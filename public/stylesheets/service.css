@@ -54,6 +54,7 @@ position: absolute;
     transition: height 0.3s;
          box-shadow: 0 0 0.2rem rgba(16, 15, 15, 0.2);
     padding: 10px;
+    flex-wrap: nowrap;
     background:  #ffffff;
     /*background: #f5f5f5;*/
     border-radius: 0.86rem;

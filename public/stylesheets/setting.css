@@ -1,0 +1,100 @@
+
+     .settings-btn {
+            top:0;
+
+           box-shadow: 0 0 0.2rem rgba(16, 15, 15, 0.5);
+            height: 2rem;
+         width: 3.2rem;
+         flex-grow: 0;
+            padding: 0px!important;
+            background-color: white;
+            border: none;
+            color: white;
+            margin-left: 0.8rem;
+            text-align: center!important;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+
+            cursor: pointer;
+            border-radius: 1.2rem;
+        }
+
+ .language-a:hover{
+      background-color: #f2f2f2;
+ }
+
+.header-button-btn:hover {
+  background-color: #f2f2f2;
+}
+.sendcode:hover{
+    background-color: #ff9999!important;
+}
+.login-button-btn:hover {
+  background-color: #f2f2f2;
+}
+.login-button-btn:focus{
+
+    outline: none;
+}
+
+.settings-btn:hover {
+  background-color: #dddddd;
+}
+    #sendButton:hover {
+    background-color: #e18787;
+  }
+
+     #submit-button:hover {
+    background-color: #ff9999;
+  }
+/*    .settings-popup {*/
+/*    position: fixed;*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    width: 70%;*/
+/*    max-width: 500px;*/
+/*    background-color: #e7eaf3;*/
+/*    padding: 20px;*/
+/*    border-radius: 3%;*/
+/*    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);*/
+/*    display: none;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*}*/
+
+
+
+
+        .tab {
+            margin-bottom: 20px;
+        }
+
+        /*h3 {*/
+        /*    margin-top: 0;*/
+        /*}*/
+
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .char-counter {
+            margin-top: 10px;
+        }
+
+        .reference-input {
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+        .title {
+            margin-bottom: 10px;
+            font-weight: bold;
+               font-family: "Arial", sans-serif;
+             line-height: 1.2;
+  position: relative; /* 将标题设置为相对定位 */
+}

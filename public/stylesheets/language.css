@@ -1,0 +1,28 @@
+
+.language-switcher{
+  border-radius: 7%;
+  position: absolute;
+    right: 14.9%;
+    top: 3.2rem;
+    background-color: white;
+    width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 0.35rem 0.35rem ;
+    z-index: 1;
+    display: none;
+  padding-bottom: 0px;
+
+}
+
+
+.language-switcher a {
+    color: #666;
+  padding: 1px;
+  font-size: 1rem;
+    text-decoration: none;
+    display: block;
+  margin-bottom: 0.3rem;
+  cursor: pointer;
+}
+
+

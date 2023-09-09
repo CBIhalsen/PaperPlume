@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!--        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">-->
+<!--    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>-->
+      <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--  <meta name="google-signin-client_id" content="324985975074-66f7l4e0tpddg2192dsonnm6m08crkjp.apps.googleusercontent.com">-->
+<!--  <script src="https://apis.google.com/js/platform.js" async defer></script>-->
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to PaperPlume, revolutionizing paper writing with AI. Craft high-quality papers in just 10 minutes at an unbeatable price of only 0.5 dollars per paper. Experience the future of writing, where ideas are generated, sentences are rephrased, and your paper structure is built for you like never before.">
+
+    <title>PaperPlume</title>
+     <link rel="icon" href="https://i.postimg.cc/XJn8k4dM/verseedinglogo.png" type="image/x-icon" style="height: 620%;width: 620%;">
+    <link rel="shortcut icon" href="https://i.postimg.cc/XJn8k4dM/verseedinglogo.png" type="image/x-icon" style="height: 620%;width: 620%;">
+     <link rel="stylesheet" type="text/css" href="/stylesheets/setting.css">
+      <link rel="stylesheet" type="text/css" href="/stylesheets/service.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/icon.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/register.css">
+     <link rel="stylesheet" type="text/css" href="/stylesheets/language.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/showtoalert.css">
+    <script src="https://unpkg.com/element-ui/lib/umd/locale/en.js"></script>
+     <!-- 引入Vue.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script src="/javascripts/language.js"></script>
+  <!-- 引入Element UI的CSS文件 -->
+
+
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+  <style>
+    .box-card {
+
+     margin-top: 1%;
+
+     position: absolute;
+     z-index: 700;
+      width: 60%;
+  left: 50%;
+          transform: translate(-50%, 1px);
+    }
+
+    .writing-status {
+  display: flex;
+  flex-direction: column;
+}
+
+.dots {
+  display: flex;
+  justify-content: space-between;
+  width: 3.5rem;  /* 调整小圆点之间的空间 */
+    margin-bottom: 0px;
+}
+
+.dot {
+    margin-bottom: 0px;
+  width: 0.8rem;  /* 更大的小圆点 */
+  height: 0.8rem; /* 更大的小圆点 */
+  background-color: #ddd; /* 更淡的颜色 */
+  border-radius: 50%;
+  animation: dot 2s infinite; /* 更长的动画间隔 */
+  animation-delay: calc(.2s * var(--i));
+}
+
+.dot:nth-child(1) {
+  --i: 0;
+}
+
+.dot:nth-child(2) {
+  --i: 1;
+}
+
+.dot:nth-child(3) {
+  --i: 2;
+}
+
+@keyframes dot {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+
+
+
+  </style>
+
+</head>
+<body>
+<!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
+ <div class="background"></div>
+
+          <div id="app">
+
+  <el-card class="box-card" v-if="showHideCard">
+    <div slot="header" class="clearfix">
+      <span data-lang-key="orderif">Order Information</span>
+           <button type="button" style="float: right" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="showHideCard = !showHideCard"></button>
+<!--      <el-button type="text" @click="showHideCard = !showHideCard" style="float:right">X</el-button>-->
+    </div>
+    <el-table
+        :data="pageData"
+        border
+        style="max-height: 70vh;overflow-y: auto;"
+     row-style="border-bottom: none;">
+    <el-table-column prop="order_id" label="Order ID" width="80" :cell-style="{ 'max-height': '100px','padding':'0px', 'font-size': '14px', 'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis' }" show-overflow-tooltip></el-table-column>
+
+      <el-table-column prop="title" label="Title" width="180" :cell-style="{ 'max-height': '100px','padding':'0px', 'font-size': '14px', 'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis' }" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="create_at" label="Created At" width="180":cell-style="{ 'max-height': '100px', 'padding':'0px','font-size': '14px', 'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis' }" show-overflow-tooltip></el-table-column>
+      <el-table-column
+  prop="status"
+  label="Status" width="100" :cell-style="{ 'max-height': '100px', 'font-size': '14px', 'padding':'0px','white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis' }" show-overflow-tooltip>
+  <template slot-scope="scope">
+    <div v-if="!scope.row.status" class="writing-status">
+      Writing
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+    <div v-else>
+       Completed
+    </div>
+
+  </template>
+</el-table-column>
+<el-table-column prop="Usage" label="Usage:" width="100">
+      <template slot-scope="scope">
+          <div v-if="scope.row.Usage">
+                 {{ scope.row.Usage }} $
+          </div>
+ <div v-else>0.25 $</div>
+  </template>
+</el-table-column>
+      <el-table-column
+      prop="url"
+
+      width="180">
+            <template slot="header" slot-scope="scope">Download:<i class="fa-solid fa-file-arrow-down" style="color:  #a9b8d0;margin-left: 0.5rem;"></i>
+  </template>
+      <template slot-scope="scope">
+
+          <a v-if="scope.row.url" @click="handleClick(scope.row.url)"
+             v-text="truncateUrl(scope.row.url)"
+             style="color: blue; text-decoration: underline; cursor: pointer;">
+          </a>
+
+           <span v-else>Null</span>
+      </template>
+  </el-table-column>
+
+
+
+
+
+    </el-table>
+    <el-pagination
+      style="margin-top: 20px;"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[5,10,15]"
+      :page-size="pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="pageTotal">
+
+    </el-pagination>
+  </el-card>
+</div>
+<!-- 引入Element UI的JavaScript文件 -->
+<!--<script src="https://unpkg.com/element-ui/lib/umd/locale/en.js">-->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/umd/locale/en.js"></script>
+<script>
+  ELEMENT.locale(ELEMENT.lang.en)
+</script>
+<script>
+
+
+
+
+  new Vue({
+    el: '#app',
+    data: {
+      // 分页的数据
+      pageData: [],
+      // 总数据量 默认为 0，这个数据需要由服务器端提供
+      pageTotal: 0,
+      // 当前页 默认是第一页
+      currentPage: 1,
+      // 每页大小 默认每页10条数据
+      pageSize: 5,
+
+      // 控制展示或者隐藏表格
+      showHideCard: false
+    },
+    methods: {
+      handleClick(fullUrl) {
+    window.open('http://127.0.0.1:5000/download/'+ fullUrl, '_blank');
+  },
+
+  truncateUrl(fullUrl) {
+    return fullUrl.split("==")[1] ;
+  },
+
+
+      // 点击orders按钮的处理函数
+      handleButtonClick() {
+        this.showHideCard = !this.showHideCard
+        if(this.showHideCard) {
+          this.fetchData()
+        } else {
+          this.pageData = []
+        }
+      },
+      // 改变每页大小的回调
+      handleSizeChange(val) {
+        this.pageSize = val
+        this.currentPage = 1 // 每次改变每页大小时，重置当前页为第一页
+        this.fetchData()
+      },
+      // 改变当前页的回调
+      handleCurrentChange(val) {
+        this.currentPage = val
+        this.fetchData()
+
+      },
+
+      fetchData() {
+           this.accessToken = getAccessToken();
+           if(!this.accessToken){
+               return;
+           }
+        this.loading = true
+        axios.get('http://127.0.0.1:5000/select_informaiton', {
+          params: {
+            page: this.currentPage,
+
+            per_page: this.pageSize  // 向后端传递每页大小
+          },
+          headers: {
+            'Authorization': `Bearer ${this.accessToken}`,
+    }
+        })
+        .then(response => {
+
+          this.pageData = response.data
+
+          this.pageTotal = response.data[0].total;
+        })
+        .catch(error => {
+          console.error(error)
+        })
+      }
+
+    },
+
+  mounted: function() {
+    var vm = this;
+    window.addEventListener('myCustomEvent', function() {
+      vm.handleButtonClick();
+    });
+  }
+
+
+  })
+</script>
+
+
+<style>
+
+    .writing1 {
+        margin-top: -5vw;
+        /*margin-top: 9.5%;*/
+  text-align: left;
+        max-width: 20vw;
+/*max-width: 20%;*/
+/*margin-left: 7%;*/
+
+}
+
+.writing1 h1 {
+  font-size: 1.6em;
+  color: #333;
+}
+
+.writing1  p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+.writing1  span {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+
+.logo-container {
+margin-top: 1.1%;
+    height: 100%;
+    width: 10%;
+
+    margin-right: auto; /* Pushes the logo to the left */
+    padding-left: 8%; /* Adds some left padding to the logo */
+}
+
+.logo-img {
+    /*margin-top: 0.5%;*/
+    height: 70%; /* Adjust the height of the logo as needed */
+    transition: transform 0.3s ease; /* Adds a smooth transition effect */
+}
+
+.logo-img:hover {
+    transform: scale(1.35); /* Increases the size of the logo on hover */
+}
+
+</style>
+
+  <input type="hidden" id="codenumber" name="codenumber" value="">
+
+    <div class="header-container">
+            <div class="logo-container">
+        <img class="logo-img" src="/images/verseeding.png" alt="Logo">
+    </div>
+     <button class="header-button-btn btn" style="right: 32.6%;" data-bs-toggle="modal" data-bs-target="#topUpModal" id="top-up-button"><i class="fas fa-coins" style="color: #FFA500;"></i>
+         <span class="head-font" data-lang-key="topup">TopUp</span>
+        </button>
+
+         <button class="header-button-btn btn" style="right: 22.3%; font-size: 1.2rem;" onclick="openorders()" id="Orders-button">
+             <i class="fa-regular fa-file-word" style="color: #FFA500;"></i>
+                      <span class="head-font" data-lang-key="orders"> Orders</span></button>
+              <button class="header-button-btn btn"  style="right: 16.3%; font-size: 1.2rem;" id="language-button">
+            <i class="fa-solid fa-language fa-lg"></i> </button>
+
+  <div id="language-switcher" class="language-switcher">
+      <a class="language-a"  data-lang="en" >English</a>
+      <a class="language-a"  data-lang="zh-CN">简体</a>
+       <a class="language-a" data-lang="zh-TW">繁體</a>
+       <a class="language-a"  data-lang="ja">日本語</a>
+  </div>
+
+    <button class=" btn header-button-btn" style="right: 9.30%; font-size: 1.1rem;" data-lang-key="login" onclick="openLoginPopup() " id="Login-button">Log in</button>
+         <button class="header-button-btn btn signup-btn" style="right: 1.3%;font-size: 1rem;box-shadow: 0 0 0.2rem rgba(16, 15, 15, 0.5); max-width: 6rem;max-height: 70%;" onclick="openregisterpopup()" data-lang-key="signup" id="signup-button">Sign up</button>
+        <button class="None-btn" onclick="openNonePopup() " id="None-button">
+             <img class="profile-img" id = 'user-img' src="https://i.postimg.cc/NF9sNz60/profile-jgp.jpg"  alt="None Image">
+        </button>
+
+
+
+  </div>
+  <div id="showalert" class="showalert">
+    <div class="showalert-content">
+                            <span class="icon-service "  style=" background-color: #33aaff;margin-right: 1.0rem;margin-left:5px;height: 30px;width: 30px; border-radius: 50%;">
+                         <i class="fa-solid fa-info " style="color: white;"></i></span>
+      <div class="showalert-text" style="font-size: 0.8rem;" id="showalert-text"></div>
+    </div>
+    <div class="close" id="showalert-close">x</div>
+    <div class="blueline" id="blueline"></div>
+  </div>
+<style>
+    .custom-width {
+        width: 100%;
+  max-width: 80vh;  /* 更改这个值以设置你需要的宽度 */
+}
+
+</style>
+
+
+
+
+
+<style>
+
+            .settings-popup {
+            margin-top: 20px;
+            position: fixed;
+
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+             width: 41%;
+            padding: 20px;
+            background-color: #f1f1f1;
+            z-index: 999;
+                    padding: 2%;
+    border-radius: 3%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                    flex-direction: column;
+    align-items: center;
+            display: none;
+        }
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.tab h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+     font-weight: bold;
+}
+
+#language-select, #writing-style-select {
+     font-weight: bold;
+}
+
+.reference-input p {
+    font-size: 16px;
+    color: #333 !important;
+    margin-bottom: 10px;
+     font-weight: bold;
+}
+
+#textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    color: #666;
+    min-height: 100px;
+     font-weight: bold;
+}
+
+#char-counter {
+    align-self: flex-end;
+    font-size: 14px;
+    color: #999;
+}
+
+  html, body {
+    height: 170%;
+  }
+
+
+
+
+
+</style>
+
+
+   <div id="settings-popup" class="settings-popup">
+        <span class="close-btn ">&times;</span>
+
+        <div class="mb-3" >
+              <label for="model-select" class="form-label" data-lang-key="language">language</label>
+
+            <select  class="form-select" id="language-select">
+                <option value="zh-CN">简体中文</option>
+                 <option value="zh-TW">繁體中文</option>
+                <option value="en">English</option>
+                <option value="ja">日本語</option>
+
+            </select>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="model-select" class="form-label" data-lang-key="model">Model</label>
+            <select class="form-select" id="model-select">
+                <option value="gpt-3.5-turbo" selected>GPT-3.5-Turbo</option>
+
+                <option value="gpt-4">GPT-4</option>
+
+            </select>
+        </div>
+
+        <div class="mb-3">
+             <label for="model-select" class="form-label" data-lang-key="writingstyle">Choose your essay writing style.</label>
+
+            <select  class="form-select" id="writing-style-select">
+                <option value="《中国社会科学》">《中国社会科学》</option>
+                <option value="《科学通报》">《科学通报》</option>
+                <option value="《中央研究院歷史語言研究所集刊》">《中央研究院歷史語言研究所集刊》</option>
+                <option value="Nature">        Nature</option>
+                <option value="Science"     >Science</option>
+                <option value="Journal of Applied Psychology">Journal of Applied Psychology</option>
+                <option value="《日本教育社会学会雑誌》">《日本教育社会学会雑誌》</option>
+                <option value="《日本物理学会誌》">《日本物理学会誌》</option>
+                <option value="《言語科学》">《言語科学》</option>
+            </select>
+        </div>
+
+<div class="reference-input mb-3">
+    <p class="text-secondary" data-lang-key="setting-textarea">Please enter your paper related materials, references, requirements, etc. Note: Direct Web access is not supported.</p>
+    <textarea id="textarea" class="form-control" rows="3" ></textarea>
+    <div id="char-counter" class="text-right mt-2"></div>
+</div>
+
+    </div>
+
+<div class="f1background">
+<div class="writing1">
+  <h1 data-lang-key="w1h1">开启AI创作论文的新纪元。</h1>
+  <p data-lang-key="w1p1">PapePlume致力于保护您的创新思维。</p>
+  <p data-lang-key="w1p2">我们为陷入论文危机中的人们提供一个有效的解决方案。利用AI ，提供高质量的论文创作服务。无需长时间思考和编写，我们能轻松在10分钟内提供一篇精美的研究论文。这项服务每篇只需0.5美元左右。</p>
+  <span data-lang-key="w1s" >探索我们的产品，体验AI带来的便捷创作。</span>
+</div>
+
+
+    <div  class="main-function">
+        <div style="display: flex;">
+        <h1 class="title" data-lang-key="mh1" >
+            Easily generate your paper with just a click.
+          </h1>
+          <button id="settings-btn" class="btn settings-btn"><i class="fa-solid fa-gear fa-lg" style="color: #a9b8d0;"></i></button>
+</div>
+        <form id="generate-form" action="/generate_outline" method="POST">
+            <div class="form-group">
+                <label style="font-weight: normal;" for="title" data-lang-key="ml1" >Enter paper title:</label>
+                <input class="form-control" type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+
+                <button  id="sendButton"  class="btn" onclick="startLoading()">
+                     <img src="/images/click.ico" alt="ico">
+            <span id="buttonText" data-lang-key="ms1" >Submit</span>
+            <span id="loader" class="hidden"></span>
+                </button>
+            </div>
+        </form>
+
+
+        <div class="form-group">
+            <label for="first-reply" data-lang-key="ml2" >Delete the content in the text box that is not related to the outline to avoid affecting the generation effect.</label>
+             <h3 style="font-size: 1rem;font-weight: normal;" data-lang-key="mh2" >Outline:</h3>
+            <textarea style="height: 10.5rem" class="form-control" id="first-reply" rows="10" cols="50"></textarea>
+            <div id="preview"></div>
+        </div>
+
+        <div class="button-group">
+<!--                <button  id="reload-button" type="submit" onclick="rstartLoading()">-->
+                     <span class="icon-service "  style=" background-color: #33ccff;margin-top: 5px;height: 30px;width: 30px; padding: 7px" onclick="showContainer(4,'showalerti');">
+                         <i class="fa-solid fa-info fa-lg" style="color: white;"></i></span>
+<!--                    <i class="fa-solid fa-circle-info fa-sm" style="color: #758299;"></i>-->
+<!--                     <img src="/images/reload1.ico" alt="ico">-->
+<!--            <span id="rbuttonText">Reload</span>-->
+<!--            <span id="rloader" class="hidden"></span>-->
+<!--                </button>-->
+
+            <button id="submit-button" class="btn" onclick="showConfirmationDialog()">
+                 <img src="/images/submit.ico" alt="ico">
+            <span id="sbuttonText" data-lang-key="ms2" >Get Started</span>
+
+
+            </button>
+        </div>
+    </div>
+    <div class="writing1" style="margin-right: 0px;">
+  <h1 data-lang-key="w2h1" >价格说明</h1>
+  <p data-lang-key="w2p1"  style=" color: #333; ">带着Verseeding的一份承诺。</p>
+  <p data-lang-key="w2p2"  style=" color: #333; ">我们的计费方式是根据OpenAI官方的token计费，透明公正，没有任何隐藏费用。除此之外，我们还会为每篇论文收取0.25美元的服务费，这是为了保证我们能够持续为您提供优质的服务。
+  我们自豪的是，PaperPlume的价格明显低于同类产品，却能提供卓越的性价比。
+  </p>
+  <span data-lang-key="w2s"  >以极低的价格，探索我们的产品。</span>
+</div>
+</div>
+
+ <style >
+    .show-board {
+      display: flex;
+        margin-top: 0px;
+
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        background-color:rgba(59,130,246,0.1);
+
+    }
+    .review-board {
+        display: flex;
+
+
+        justify-content: center;
+        width: 100%;
+        background-color:transparent;
+
+
+    }
+
+    .reviews{
+      display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+    }
+
+    /* h2 {
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    h3 {
+      font-size: 0.9em;
+      color: #666;
+    } */
+
+
+    .review {
+       margin: 40px 10px;
+        width: 23%;
+        height: inherit;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .review h2{
+      font-size: 1.2em;
+      color: #333;
+    }
+    .review p{
+      font-size: 1em;
+      color: #333;
+      margin-top: 20px;
+    }
+    .reviews h2{
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    .reviews h3{
+      font-size: 0.9em;
+      color: #666;
+    }
+    .review h3{
+      font-size: 0.9em;
+      color: #666;
+    }
+    .review h2, .review h3 {
+        margin: 0;
+    }
+
+    .stars {
+      color: rgb(255, 69, 0);
+        margin: 10px 0;
+    }
+
+
+      </style>
+<div style="background-color: white;padding: 30px;margin-top: 0px!important;">
+
+<div class="show-board" style="background-color: #fef9f3;margin-top: 0px;">
+<!--<div class="reviews">-->
+<!--  <h1 style="color: rgba(59,130,246,0.7);font-size: 32px;margin-top: 20px; margin-bottom: 0px;">REVIEWS</h1>-->
+<!--  <h2 style="font-size: larger; margin-top: 20px;">"最优秀的AI驱动论文生成器"</h2>-->
+<!--  <h3 style="font-size: smaller;margin-top: 20px;margin-bottom: -3px;">根据我们的用户</h3>-->
+<!--</div>-->
+
+  <div class="review-board" >
+
+
+    <div class="review" style="width: 18%;">
+        <h2 data-lang-key="rh2">客户满意度</h2>
+        <div style="display: flex">
+
+
+        <i class="fa-solid fa-thumbs-up fa-2xl" style="margin-top: 17px; color:#FFA500;"></i>
+               <h3 style="margin-top: 15px;margin-left: 10px;">99%+</h3>
+
+        </div>
+
+   </div>
+          <div class="review" style="width: 18%;">
+        <h2 data-lang-key="r2h2">生成论文</h2>
+         <div style="display: flex">
+             <i class="fa-regular fa-pen-to-square fa-2xl" style="margin-top: 17px; color: #D4C7A5; "></i>
+        <h3 data-lang-key="rh3" style="margin-top: 15px;margin-left: 10px;">已经生成超过10000篇论文</h3>
+            </div>
+  </div>
+
+</div>
+</div>
+
+</div>
+<div class="show-board">
+<div class="reviews">
+  <h1 data-lang-key="sh1" style="color: rgba(59,130,246,0.7);font-size: 32px;margin-top: 20px; margin-bottom: 0px;">REVIEWS</h1>
+  <h2 data-lang-key="sh2" style="font-size: larger; margin-top: 20px;">"最优秀的AI驱动论文生成器"</h2>
+  <h3 data-lang-key="sh3" style="font-size: smaller;margin-top: 20px;margin-bottom: -3px;">根据我们的用户</h3>
+</div>
+
+  <div class="review-board" id="comment">
+
+    <div class="review">
+        <h2 >Tom Harrison</h2>
+        <h3 data-lang-key="rb1h3">大学生</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p data-lang-key="rb1p">这个应用真的太棒了！我之前总是在写论文上花费太多时间，但是自从我开始使用这个应用后，我找到了一种更有效率的方法。它不仅帮助我快速生成论文，而且还能保证质量。这真的是我在大学期间的救星!</p>
+    </div>
+    <div class="review">
+        <h2 >Dr. Elizabeth Mitchell</h2>
+        <h3 data-lang-key="rb2h3">研究员</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p data-lang-key="rb2p">我对这个应用的赞美简直无法用言语表达。它在我需要快速生成高质量研究报告时，提供了无比的帮助。它的人工智能功能强大，可以理解我需要的内容，并快速生成我需要的论文。论文的结构清晰，语言准确，引用完备，大大提高了我的工作效率。我强烈推荐这个应用给所有的研究人员。</p>
+    </div>
+    <div class="review">
+        <h2 >PhD Candidate, Jackson Stewart</h2>
+        <h3 data-lang-key="rb3h3">博士生</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p data-lang-key="rb3p">这个应用对我来说是一种革命性的工具。我需要写很多论文，但我经常在开始写作时感到困难。这个应用帮助我克服了这个问题，它可以理解我想要表达的思想并将其转化为一篇完整的论文。它的AI功能让我的写作更加流畅，我真的无法想象没有这个应用我该怎么办。</p>
+    </div>
+</div>
+</div>
+<div class="login-popup" id="loginPopup">
+  <div class="grid-container">
+    <div class="item item1">
+        <div style="margin-top: -4rem; margin-bottom: 2rem;">
+            <img style="height: 55px; width: 55px; animation: moveHorizontal 3.5s infinite linear;" src="https://i.postimg.cc/XJn8k4dM/verseedinglogo.png" alt="Logo">
+          </div>
+<!--<div class="">-->
+          <p data-lang-key="lgp" style="font-size: 1.38em;color: #333;">登录PaperPlume</p>
+          <p data-lang-key="pr">注册即可获赠Tokens。</p>
+
+
+          <p data-lang-key="faa" class="faa" style="font-size: 1.2em;color: #666;margin-top: 0.2rem;margin-bottom: 1.5rem;">FAA: 快速, 经济, 自动化</p>
+
+          <div style="font-size: 0.85rem;color: #666;">
+              <span data-lang-key="bcl">点击登录或注册，即同意</span>
+              <span data-lang-key="ts" class="underClick" style="margin-right: 2px;" onclick="openTermsAndPrivacy()">服务条款</span> and <span  data-lang-key="sep" class="underClick" style="margin-left: 2px;" onclick="openTermsAndPrivacy()">隐私政策。</span>
+          </div>
+
+<!--      </div>-->
+        </div>
+    <div class="item item2">
+          <span class="close-btn" onclick="closeLoginPopup()">&times;</span>
+        <div class="thirdlogin">
+            <button class="login-button-btn" id="google-login-button">
+                 <img style="height: 1.2rem;width: 1.2rem;" src="/images/google-logo.ico" alt="ico">
+
+            </button>
+            <button class="login-button-btn" style="margin-left: 1rem;" id="github-login-button">
+                 <img style="height: 1.2rem;width: 1.2rem;" src="/images/github-logo.ico" alt="ico">
+            </button>
+        </div>
+<!--    <form  style="width: 100%;"margin-bottom: 1.08rem; id="loginForm">-->
+
+      <div class="input-container" style="margin-top: 1.5rem;">
+          <span data-lang-key="eadd">Email address</span>
+        <input class="input-field form-control" type="email" id="emailInput" name="username" placeholder="Your email address" required>
+      </div>
+
+            <div class="input-container" id="npss" style="display: none;">
+       <span data-lang-key="fsyp">New Password</span>
+        <input class="input-field form-control" type="password" id="fpasswordInput" name="password" placeholder="New Password"  required pattern="(?=.*\d)(?=.*[a-zA-Z]).{10,}">
+        <i class="fa fa-eye" style="color: #94b6f0;" id="ftogglePassword"></i>
+      </div>
+      <div class="input-container" id="ypas">
+       <span data-lang-key="syp">Your Password</span>
+        <input class="input-field form-control" type="password" id="passwordInput" name="password" placeholder="Your Password"  required pattern="(?=.*\d)(?=.*[a-zA-Z]).{10,}">
+        <i class="fa fa-eye" style="color: #94b6f0;" id="togglePassword"></i>
+      </div>
+
+      <div class="input-container" id="fcpc" style="display: none;">
+              <span data-lang-key="fcpc">Confirm your New Password</span>
+              <input type="password" id="fconfirmPassword" class="form-control input-field" placeholder="Confirm your New Password" required oninput="check(this,'forget')">
+       </div>
+      <div class="input-container" id="cpc" style="display: none;">
+              <span data-lang-key="cyp">Confirm your Password</span>
+              <input type="password" id="confirmPassword" class="form-control input-field" placeholder="Confirm your password" required oninput="check(this,'register')">
+       </div>
+      <div class="input-container" id="ecc" style="display: none;">
+        <span data-lang-key="etc">Enter the code</span>
+          <div style="display:flex;width: 100%; ">
+        <input type="text" id="verificationCode" class="form-control input-field" style="width: 60%;" placeholder="Enter the code" required pattern="\d{6}" title="Verification code should be 6 digits" >
+        <button class="header-button-btn btn sendcode" style="position: relative;margin-left: 0.5rem;" type="button" onclick="check_email('register')" id="sendCodeBtn" >
+             <span id="sloader" class="hidden"></span>
+            <span id="sendcodeText" data-lang-key="sc" >Send code</span>
+            <span id="sendcountdown"></span>
+            </button>
+        <button class="header-button-btn btn sendcode" style="position: relative;display: none;margin-left: 0.5rem;" type="button" onclick="check_email('forget')" id="fsendCodeBtn" >
+             <span id="fsloader" class="hidden"></span>
+            <span id="fsendcodeText" data-lang-key="sc" >Send code</span>
+            <span id="fsendcountdown"></span>
+            </button>
+      </div>
+          </div>
+
+      <button class="login-button-btn"  id="login" style="width: 100%;margin-top: 0.5rem; height: auto;background-color: #ff9999;color: white; " data-lang-key="lb" onclick="Tologin()">登录</button>
+      <button class="login-button-btn" id="register" style="width: 100%;display: none;margin-top: 0.5rem; height: auto;background-color: #ff9999;color: white; " data-lang-key="lbr" onclick="register('register')" >注册</button>
+            <button class="login-button-btn" id="fregister" style="width: 100%;display: none;margin-top: 0.5rem; height: auto;background-color: #ff9999;color: white; " data-lang-key="flbr" onclick="register('forget')" >Reset Password</button>
+<!--              <a href="#" class="forgot-password" data-lang-key="la" >Forgot password?</a>-->
+<!--    </form>-->
+           <span id ='allogin' data-lang-key="ahaa" style="font-size: 0.8rem;display: none;  border-bottom: 1px solid  #ff9999; color: #666; cursor: pointer; margin-top: 1rem;" onclick="openLoginPopup()">Already have an account? Log in</span>
+   <span id="fp" data-lang-key="fyp" style="font-size: 0.8rem;  border-bottom: 1px solid  #ff9999; color: #666; cursor: pointer; margin-top: 1rem;" onclick="openregisterpopup('forget')">Forgot your password?</span>
+          <span id="nosignup" data-lang-key="dhaa"  style=" border-bottom: 1px solid #ff9999; color: #666;font-size: 0.8rem; cursor: pointer; margin-top: 1rem;" onclick="openregisterpopup('register')">Don't have an account? Sign up</span>
+<!--          <span style="text-decoration: underline; cursor: pointer;" onclick="myFunction()">带有下划线的文本</span>-->
+<!--<a href="#" class="forgot-password" data-lang-key="la" >Forgot password?</a>-->
+
+        </div>
+
+  </div>
+    </div>
+<!--<div class="login-container">-->
+
+<!--    <div class="login-popup" id="loginsPopup">-->
+<!--  <div class="popup-content">-->
+<!--    <span class="close-btn" style="font-size: 2rem;" onclick="closeLoginPopup()">&times;</span>-->
+<!--    <h3 class="popup-title" data-lang-key="lh3">欢迎回来</h3>-->
+<!--    <form action="/login" method="POST" id="loginsForm">-->
+<!--      <div class="input-container">-->
+<!--        <i class="fa fa-envelope"></i>-->
+<!--        <input class="input-field" type="email" id="emailsInput" name="username" placeholder="Enter your Email" required>-->
+<!--      </div>-->
+<!--      <div class="input-container">-->
+<!--        <i class="fa fa-lock"></i>-->
+<!--        <input class="input-field" type="password" id="passwordsInput" name="password" placeholder="Enter your password"  required pattern="(?=.*\d)(?=.*[a-zA-Z]).{10,}">-->
+<!--        <i class="fa fa-eye" id="togglesPassword"></i>-->
+<!--      </div>-->
+<!--      <a href="#" class="forgot-password" data-lang-key="la" >Forgot password?</a>-->
+<!--      <button class="login-option-btn" data-lang-key="lb" type="submit">登录</button>-->
+<!--    </form>-->
+
+<!--    <div class="register-option">-->
+<!--      <p data-lang-key="lp">Don't have an account? <a data-lang-key="lpa" href="/register">Sign up</a></p>-->
+<!--    </div>-->
+<!--    <div class="social-login">-->
+<!--      <div class="or-separator">-->
+<!--  <div class="line"></div>-->
+<!--  <div class="or-text">OR</div>-->
+<!--  <div class="line"></div>-->
+<!--</div>-->
+
+<!--          <button id="sgoogle-login-button" class="social-login-btn google"  >Continue with Google</button>-->
+<!--      <button id="sgithub-login-button"  class="social-login-btn github"  >Continue with Github</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--</div>-->
+
+<!--    <div id="registerModal" class="registerModal">-->
+<!--  <div class="d-flex justify-content-center align-items-center vh-100 vw-100" >-->
+<!--    <div class="card border-0 shadow" style="border-radius: 5% !important;">-->
+
+<!--      <div class="card-body">-->
+<!--        <span class="closeRegisterPopup" onclick="closeregisterpopup()">&times;</span>-->
+<!--        <h3 class="card-title text-center mb-4" data-lang-key="rgh3">注册</h3>-->
+<!--        <form id="registerForm">-->
+
+<!--          <div class="mb-3">-->
+<!--            <div class="input-group">-->
+<!--              <span class="input-group-text">@</span>-->
+<!--              <input type="email" id="email" class="form-control" placeholder="Enter your Email" required >-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <div class="input-group">-->
+<!--              <span class="input-group-text"><i class="fas fa-lock"></i></span>-->
+<!--              <input type="password" id="password" class="form-control" placeholder="Enter your password"  required pattern="(?=.*\d)(?=.*[a-zA-Z]).{10,}" title="密码必须由10位以上字符组成，且必须包含数字和字母">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <div class="input-group">-->
+<!--              <span class="input-group-text"><i class="fas fa-lock"></i></span>-->
+<!--              <input type="password" id="confirmsPassword" class="form-control" placeholder="Confirm your password" required oninput="check(this)">-->
+
+
+<!--            </div>-->
+<!--            <small id="passwordHelpBlock" class="form-text text-danger " ></small>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <div class="input-group">-->
+<!--              <span class="input-group-text"><i class="fas fa-check-circle"></i></span>-->
+<!--              <input type="text" id="verificationsCode" class="form-control" placeholder="Enter the code" required pattern="\d{6}" title="Verification code should be 6 digits" >-->
+<!--              <button class="btn btn-primary" type="button" onclick="check_email()" id="sendsCodeBtn"  data-lang-key="rgsb" >发送验证码</button>-->
+<!--            </div>-->
+<!--            <div id="countdown"></div>-->
+<!--          </div>-->
+<!--          <div class="mb-3 text-center">-->
+<!--            <button type="submit"   data-lang-key="rgrb" class="btn btn-primary w-100" >注册</button>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+
+
+
+<style>
+    .list-group-item{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+        white-space: nowrap;width: 100%;background-color: transparent;
+  }
+  #NonePopup {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+
+
+
+<style>
+    .modal-dialog-custom {
+        width: 100% ; /* Change this to whatever width you want */
+        margin: 50px auto; /* Changes the top and bottom margin */
+    }
+</style>
+<div class="container">
+<!--    <div style="background-color: black;height: 100%;width: 100%;">-->
+  <div class="login-popup modal-dialog-custom" style="top:-1.98rem;" tabindex="-1" id="NonePopup">
+<!--    <div class="modal-dialog modal-dialog-custom">-->
+      <div class="modal-content modal-dialog-custom item2" style="width: 40%;   box-shadow: 0 0 0.2rem rgba(16, 15, 15, 0.2);border: none;background-color:  rgba(245, 245, 245, 1);">
+        <div class="modal-header" style="width: 100%;">
+          <h5 class="modal-title"  data-lang-key="uih5">User Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="closeNonePopup()"></button>
+        </div>
+        <div class="modal-body" style="width: 100%!important;" >
+          <ul class="list-group list-group-flush" style="white-space: nowrap;width: 100%;background-color: transparent;" >
+                  <li class="list-group-item"><span class="fw-bold"  data-lang-key="uiid">User_id:</span><span id="userid-value"></span></li>
+            <li class="list-group-item"><span class="fw-bold"  data-lang-key="uiemail">Email:</span><span id="Email-value"></span></li>
+            <li class="list-group-item"><span class="fw-bold"  data-lang-key="uigp">Generated Paper:</span><span id="number-value"></span></li>
+            <li class="list-group-item"><span class="fw-bold"  data-lang-key="uib">Balance:</span><span id="balance-value"></span></li>
+
+            <li class="list-group-item"><span class="fw-bold"  data-lang-key="uit">Token Consumption: </span><span id="Token-value"></span></li>
+          </ul>
+        </div>
+        <div class="modal-footer" style="width: 100%;">
+          <button type="button" class="header-button-btn btn " style="position: relative;font-size: 1rem;box-shadow: 0 0 0.2rem rgba(16, 15, 15, 0.5); max-width: 6rem;max-height: 70%;"   onClick="openNonePopup()"  data-lang-key="uif">Refresh</button>
+          <button type="button" class="header-button-btn btn "  style="position: relative;font-size: 1rem;box-shadow: 0 0 0.2rem rgba(16, 15, 15, 0.5); max-width: 6rem;max-height: 70%;"   id="logout"  data-lang-key="uil">Log out</button>
+        </div>
+      </div>
+    </div>
+<!--  </div>-->
+
+</div>
+
+
+
+  <!-- 模态框 -->
+<!--  <div id="myModal" class="modal">-->
+<!--    <div class="modal-content">-->
+<!--      <p id="modalMessage"></p>-->
+<!--      <button class="modal-button" onclick="closeModal()">Close</button>-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+
+<script>
+    var screenWidth = window.screen.width;
+console.log("显示器像素宽度：" + screenWidth);
+
+function handleGoogle() {
+  googleLogin();
+}
+
+        var userLanguage = navigator.language || navigator.userLanguage;
+
+        // 输出首选语言到控制台
+        console.log("浏览器首选语言：" + userLanguage);
+
+
+</script>
+
+<script>
+    const passwordInput = document.getElementById('passwordInput');
+const togglePasswordButton = document.getElementById('togglePassword');
+
+
+
+togglePasswordButton.addEventListener('click', function() {
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    togglePasswordButton.classList.add('fa-eye-slash'); // change to eye slash when password is visible
+    togglePasswordButton.classList.remove('fa-eye');
+  } else {
+    passwordInput.type = 'password';
+    togglePasswordButton.classList.add('fa-eye');
+    togglePasswordButton.classList.remove('fa-eye-slash'); // change back to regular eye when password is hidden
+  }
+});
+
+const fpasswordInput = document.getElementById('fpasswordInput');
+const ftogglePasswordButton = document.getElementById('ftogglePassword');
+ftogglePasswordButton.addEventListener('click', function() {
+  if (fpasswordInput.type === 'password') {
+    fpasswordInput.type = 'text';
+    ftogglePasswordButton.classList.add('fa-eye-slash'); // change to eye slash when password is visible
+    ftogglePasswordButton.classList.remove('fa-eye');
+  } else {
+    fpasswordInput.type = 'password';
+    ftogglePasswordButton.classList.add('fa-eye');
+    ftogglePasswordButton.classList.remove('fa-eye-slash'); // change back to regular eye when password is hidden
+  }
+});
+
+
+function openorders() {
+  var event = new CustomEvent('myCustomEvent');
+  window.dispatchEvent(event);
+}
+</script>
+
+ <!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/javascripts/setting.js"></script>
+<script src="/javascripts/scripts.js"></script>
+<script src="/javascripts/register.js"></script>
+<script src="/javascripts/loading.js"></script>
+
+<script>
+
+
+
+</script>
+<p data-lang-key="showalerti" id="showalerti" style="display: none;"></p>
+<p data-lang-key="showalertls" id="showalertls" style="display: none;"></p>
+<p data-lang-key="showalertlo" id="showalertlo" style="display: none;"></p>
+<p data-lang-key="showalertss" id="showalertss" style="display: none;"></p>
+<p data-lang-key="showalertwa" id="showalertwa" style="display: none;"></p>
+<p data-lang-key="showalertpe" id="showalertpe" style="display: none;"></p>
+<p data-lang-key="showalertsc" id="showalertsc" style="display: none;"></p>
+<p data-lang-key="showalertrs" id="showalertrs" style="display: none;"></p>
+<p data-lang-key="prequir" id="prequir" style="display: none;"></p>
+<p data-lang-key="tologin" id="tologin" style="display: none;"></p>
+<p data-lang-key="nagw" id="nagw" style="display: none;"></p>
+<p data-lang-key="nagw3" id="nagw3" style="display: none;"></p>
+<p data-lang-key="nagw4" id="nagw4" style="display: none;"></p>
+<p data-lang-key="getstart" id="getstart" style="display: none;"></p>
+<p data-lang-key="sce" id="sce" style="display: none;"></p>
+
+
+<script>
+
+document.getElementById("model-select").addEventListener("change", function() {
+    var selectedOption = this.value;
+    if (selectedOption === "gpt-4") {
+        // document.getElementById('showalert-text').style.color = '';
+
+
+       colorshowContainer(10,'showalertwa','#ea4545');
+
+    }
+});
+function colorshowContainer(time,type,color){
+    // #ea4545
+     document.getElementById('showalert-text').style.color=color;
+     showContainer(time,type) ;
+         setTimeout(function() {
+        document.getElementById('showalert-text').style.color = '';
+    }, time*1000);
+
+}
+
+
+        function showContainer(time,type) {
+      const container = document.getElementById('showalert');
+      // showalert-text
+      const textDiv = document.getElementById('showalert-text');
+
+      const line = document.getElementById('blueline');
+      // .querySelector('.blueline');
+        const div = document.getElementById(type);
+      const divText = div.innerHTML;
+
+      textDiv.innerHTML = divText;
+      // textDiv.innerHTML = str;
+      container.style.display = 'flex';
+
+      line.style.animationDuration = `${time}s`;
+
+      setTimeout(() => {
+        container.style.display = 'none';
+      }, time * 1000);
+    }
+
+    document.getElementById('showalert-close').addEventListener('click', () => {
+      document.getElementById('showalert').style.display = 'none';
+    });
+
+
+
+</script>
+
+
+<!--<style>-->
+<!--        .show-footer {-->
+<!--      display: flex;-->
+<!--        margin-top: 20px;-->
+<!--        padding: 20px !important;-->
+
+<!--        justify-content: center;-->
+<!--        width: 100%;-->
+<!--        background-color:rgba(59,130,246,0.1);-->
+
+<!--    }-->
+<!--</style>-->
+
+
+<div id="googleapp">
+    <span></span>
+</div>
+
+<!--<div class="show-footer" id ="show-footer">-->
+
+
+
+<!--<footer>-->
+<!--        <div class="container">-->
+<!--            <p>Copyrights &copy; 2023 Verseeding | Designed by <a href="https://github.com/CBIhalsen" target="_blank">Felix Chen</a></p>-->
+<!--            <p>Email: <a href="mailto:kulleeter@gmail.com">kulleeter@gmail.com</a></p>-->
+<!--        </div>-->
+<!--    </footer>-->
+
+<!--</div>-->
+</body>
+</html>

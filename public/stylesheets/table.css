@@ -1,0 +1,10 @@
+.information_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin-left: 650px;
+    }
+    .information_content {
+      max-width: 70%;
+    }

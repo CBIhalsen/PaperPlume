@@ -1,0 +1,93 @@
+#sendButton {
+  background-color: #33ccff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+#sendButton img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+#sendButton span {
+  margin-left: 1px;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#loader {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+}
+#reload-button {
+  background-color: #33ccff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+#reload-button img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+#reload-button span {
+  margin-left: 1px;
+}
+#rloader {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+}
+/*.ccc{*/
+/*  background-color: #ea4545;*/
+/*}*/
+#submit-button {
+  background-color: #33ccff;
+  color: #fff;
+  padding: 10px 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+#submit-button img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+#submit-button span {
+  margin-left: 1px;
+}

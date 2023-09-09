@@ -1,0 +1,762 @@
+ input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: inner-spin-button;
+    appearance: inner-spin-button;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+
+
+textarea {
+        width: 300px;
+        height: 200px;
+        overflow-y: scroll;
+    }
+
+    /* Webkit内核浏览器样式 */
+    textarea::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    textarea::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    textarea::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    textarea::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    /* Firefox浏览器样式 */
+    textarea {
+        scrollbar-width: thin;
+        scrollbar-color: #888 #f1f1f1;
+    }
+
+.main-function{
+    /*margin-top: -1.35rem;*/
+    /*top: 100px;*/
+    /*left: 50%;*/
+    /*transform: translateX(-50%);*/
+    max-width: 34.6%;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 2.5%;
+}
+/* 样式化容器 */
+#container {
+
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 500px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 2.5%;
+}
+
+/* 样式化标题 */
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+ /*样式化表单组*/
+.form-group {
+    margin: 0 auto;
+    margin-right: 15px;
+    margin-bottom: 20px;
+}
+
+/* 样式化标签和输入框 */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+/* 样式化按钮组 */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 样式化按钮 */
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0069d9;
+}
+
+/* 样式化隐藏的表单 */
+.hidden-form {
+    display: none;
+}
+.header-container {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/*background-color:#FDC500;*/
+.f1background {
+    display: flex;
+    padding: 40px 10px;
+    justify-content: space-evenly; /* 将子元素均匀分布 */
+    align-items: center; /* 垂直居中对齐子元素 */
+    width: 100%;
+    height: 100%;
+ /* 设置包含块的高度 */
+  background-image: url('https://i.postimg.cc/ZKxXssW-r/backgroundul.png');
+  background-size: cover;
+  background-position: center;
+
+}
+/*.f1background .child {*/
+/*    display: inline-block;*/
+/*}*/
+
+
+
+/*body {*/
+/*  background-image:*/
+/*   linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)),*/
+/*          url('https://gptzero.me/_next/static/media/home-background.9846d049.svg');*/
+
+/*    background-size:cover;*/
+
+/*  background-position: center;*/
+/*  background-repeat: no-repeat;*/
+/*  background-attachment: fixed;*/
+/*}*/
+
+.profile-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin: 1px;
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.7);
+}
+
+.None-btn {
+
+
+     border: 2px solid yellow;
+  position: absolute;
+  display: none;
+  right: 2%;
+  font-size: 16px;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.login-container {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+
+}
+
+.icon-input {
+    position: relative;
+}
+
+.icon-input .fa {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.icon-input .form-control {
+    padding-left: 30px;  /* Adjust this value to position the input text accordingly */
+}
+
+
+
+.login-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    /*background-color: rgba(0, 0, 0, 0.1);*/
+  backdrop-filter: blur(10px); /* 添加模糊效果，可以根据需要调整模糊程度 */
+  z-index: 700;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 3%;
+  text-align: center;
+  position: absolute;
+  width: 400px;
+  height: auto;
+  border: 1px solid #ccc;
+}
+
+.popup-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/*.input-container {*/
+/*  position: relative;*/
+/*  margin-bottom: 15px;*/
+/*}*/
+
+
+
+.forgot-password {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-align: left;
+  color: #888;
+  cursor: pointer;
+    text-decoration: none;
+}
+
+.or-separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+    font-size: 12px;
+  color: black;
+  margin: 20px 0;
+}
+
+.or-separator .line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #bbb;
+}
+
+.or-separator .or-text {
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+
+.login-option-btn {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1em;
+  font-weight: bold;
+  color: #fff;
+  background-color: #2196F3;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.register-option {
+  margin: 15px 0;
+}
+
+.social-login {
+  margin-top: 20px;
+}
+
+.social-login-btn {
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.social-login-btn.google {
+  background-color: #DB4437;
+}
+
+.social-login-btn.github {
+  background-color: #24292E;
+}
+
+
+
+.ilogin-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 700;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.ipopup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 3%;
+  text-align: center;
+  position: absolute;
+  width: 400px;
+  height: 277.67px;
+  border: 1px solid #ccc;
+}
+
+.ipopup-title {
+  text-align: center;
+  margin-bottom: 20px;
+
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.08rem;
+    display: block;
+
+}
+/*#togglePassword {*/
+/*   !important;*/
+/*}*/
+/*i.fa-lock{*/
+/*    top: 11px !important;*/
+/*    font-size: 19px !important;*/
+/*}*/
+/*i.fa-eye {*/
+/*  margin-left: 90%;  !* 根据需要调整这个值 *!*/
+/*}*/
+
+.input-container i {
+    position: absolute;
+    margin-left: 90%;
+    left: 0px;
+    top: 2.6rem;
+
+}
+.input-container span{
+    font-size: 1rem;
+    color: #666;
+}
+
+.input-container input {
+width: 100%;
+
+
+}
+
+.input-field {
+  width: 100%;
+  padding: 5px;
+    margin-top: 5px;
+    height: 2.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.input-field::placeholder {
+  font-size: 1rem; /* 设置占位符字体大小，可以根据需要调整像素值 */
+}
+
+.login-option {
+  display: block;
+  margin-top: 10px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  font-size: 14px;
+  width: 100%;
+  max-width: 200px;
+  margin: 10px auto;
+}
+
+.login-btn-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+
+.login-option-btn {
+  display: block;
+  margin-top: 10px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  font-size: 14px;
+  width: 70%;
+  max-width: 300px;
+  margin: auto;
+}
+.login-option-btn:hover {
+  color: #000;
+}
+.Google-option-btn {
+  flex: 1;
+  margin-top: 10px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 14px;
+  width: 100%;
+  max-width: 300px;
+  /* margin: 10px auto; */
+}
+.Github-option-btn {
+  flex: 1;
+  margin-top: 10px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 14px;
+  width: 100%;
+  max-width: 300px;
+  /* margin: 10px auto; */
+}
+
+#login-innerpopup {
+  z-index: 800;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: transparent;
+
+  padding: 10px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#popup-content {
+  margin-bottom: 10px;
+}
+
+#popup-message {
+  font-weight: bold;
+  color: red;
+  font-size: 9px;
+}
+.inline-paragraphs {
+  margin-top:5px;
+   margin-left: 10px;
+  margin-bottom: 10px;
+  overflow: hidden; /* 清除浮动元素的影响 */
+
+
+}
+
+.inline-paragraphs p {
+  width: 50%; /* 将段落宽度设置为50% */
+  float: left; /* 左浮动 */
+  box-sizing: border-box; /* 包含padding和border在内的宽度计算 */
+  margin-right: -20px; /* 减少两个段落之间的距离 */
+
+}
+.oneinline-paragraphs {
+  overflow: hidden; /* 清除浮动元素的影响 */
+  margin-left: 10px;
+   margin-bottom: 10px;
+
+}
+
+.oneinline-paragraphs p {
+  width: 50%; /* 将段落宽度设置为50% */
+
+  float: left; /* 左浮动 */
+
+  box-sizing: border-box; /* 包含padding和border在内的宽度计算 */
+
+}
+
+.label {
+  font-weight: bold;
+
+}
+
+/*.message {*/
+/*            background-color: #f2f2f2;*/
+/*            padding: 10px;*/
+/*            margin-bottom: 10px;*/
+/*        }*/
+
+
+/*body {*/
+/*  font-family: Arial, sans-serif;*/
+/*}*/
+
+/*h1 {*/
+/*  text-align: center;*/
+/*}*/
+
+/*#chat-container {*/
+/*  max-width: 600px;*/
+/*  margin: 0 auto;*/
+/*  padding: 20px;*/
+/*  border: 1px solid #ccc;*/
+/*}*/
+
+/*#chat-log {*/
+/*  height: 400px;*/
+/*  overflow-y: scroll;*/
+/*  border: 1px solid #ccc;*/
+/*  padding: 10px;*/
+/*}*/
+
+/*#user-input {*/
+/*  width: 100%;*/
+/*  padding: 10px;*/
+/*  margin-top: 10px;*/
+/*}*/
+
+/*#send-btn {*/
+/*  padding: 10px 20px;*/
+/*  margin-top: 10px;*/
+/*}*/
+.button-container {
+  border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  padding-top: 6px; /* 添加顶部内边距 */
+
+
+  }
+
+  .logout-btn,
+  .fresh-btn {
+
+     margin-left: 25px;
+  margin-right: 25px;
+  }
+ .None-popup {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .popup-content {
+    flex: 1;
+  }
+
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 300px;
+      border-radius: 5px;
+    }
+
+    /* 样式化按钮 */
+    .modal-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+    .head-font{
+        font-size: 0.95rem;
+        margin-left: 0.13rem;
+        color: #333;
+    }
+.header-button-btn {
+       position: absolute;
+
+
+
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+   background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+.login-button-btn {
+    border: none;
+    padding:0.6rem 1.2rem;
+         box-shadow: 0 0 0.2rem rgba(16, 15, 15, 0.1);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+   background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+
+
+  .None-btn:hover, .None-btn:focus {
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+}
+  .profile-img:hover{
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.7);
+  }
+
+
+
+        body {
+
+            max-height: 250vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        footer {
+            /*margin-bottom: 50px !important;*/
+            height: 14vh;
+            top: 0;
+            left: 0;
+            width: 80%;
+            /*height: 40px;*/
+            background-color: #fff;
+            padding-top: 20px;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-bottom: 20px;
+
+
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: auto;
+             flex-shrink: 1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+             flex: 1;
+
+
+        }
+
+        footer .container p {
+            margin: 0;
+            line-height: 1.5;
+            color: #00ff00; /* 修改文本颜色为蓝色 */
+        }
+
+        footer .container a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        footer .container a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* 默认根元素字体大小 */
+html {
+  font-size: 16px; // 默认字体大小为16px
+}
+
+/* 在屏幕宽度小于600px时，将根元素字体大小调整为14px */
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 14px; // 小屏幕设备的最小字体大小为14px
+  }
+}
+
+/* 在屏幕宽度在600px到2000px之间时，字体大小动态调整 */
+@media screen and (min-width: 600px) and (max-width: 2000px) {
+  html {
+    font-size: calc(14px + (18 - 14) * ((100vw - 600px) / (2000 - 600))); // 当视口宽度在600px到2000px之间时，字体大小根据视口宽度从14px逐渐增加到18px
+  }
+}
+
+/* 在屏幕宽度大于2000px时，将根元素字体大小调整为18px */
+@media screen and (min-width: 2000px) {
+  html {
+    font-size: 18px; // 大屏幕设备的最大字体大小为18px
+  }
+}
+
+/* 在其他屏幕宽度范围内保持默认字体大小 */

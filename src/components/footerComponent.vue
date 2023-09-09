@@ -1,6 +1,6 @@
 <template>
-  <div style="background-color: #fef9f3;padding: 4.5rem 5rem;display: flex; justify-content: center; align-items: center;flex-direction: column;padding-bottom: 5rem; ">
-  <div class="show-footer" style="display: flex; padding: 4.5rem 4rem;">
+  <div style="background-color: #fef9f3;padding: 4.5rem 5rem;display: flex; justify-content: center;flex-direction: column; align-items: center;padding-bottom: 5rem;">
+  <div class="show-footer" style="display: flex; padding: 4.5rem 4rem;flex-wrap: wrap;  ">
     <div class="column1 column">
       <h2 data-lang-key="fh2" >General FAQs about our AI Paper Creator</h2>
       <p data-lang-key="fp" style="margin-top: 1rem;">Everything you need to know about PaperPlume and our one-click academic paper generator. Can’t find an answer?  You can talk to Vee, our customer service.</p>
@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-    <div class="contact-us">
+    <div class="contact-us" style="display: flex;flex-wrap: wrap;">
       <p style="margin-right: 1rem;">Copyrights &copy; 2023 Verseeding   </p>
 <a data-lang-key="ca1" href="mailto:kulleeter@gmail.com">Contact Us  |</a> <a data-lang-key="ca2" >Support  |</a>  <a data-lang-key="ca3"  href="Blog" target="_blank" >Blog  |</a>  <a data-lang-key="ca5"  href="TermsServiceandPrivacyPolicy.html" target="_blank">Cookie Policy   |</a> <a data-lang-key="ca6"  href="TermsServiceandPrivacyPolicy.html" target="_blank" >Privacy Policy   |</a>  <a>Powered by | </a> <a >Verseeding</a>
 <!--            <p>Copyrights &copy; 2023 Verseeding | Designed by <a href="https://github.com/CBIhalsen" target="_blank">Felix Chen</a>-->
@@ -101,15 +101,7 @@ export default {
             text-decoration: underline;
         }
 
-    .writing1 {
-        margin-top: -5vw;
-        /*margin-top: 9.5%;*/
-  text-align: left;
-        max-width: 20vw;
-/*max-width: 20%;*/
-/*margin-left: 7%;*/
 
-}
 
 .column h2 {
   font-size: 1.5rem;
@@ -138,13 +130,16 @@ export default {
     justify-content: space-between;
 }
 .column1 {
-  margin-top: -0.7rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   margin-left: 2.2rem;
-    width: 25%;
+    width: 270px;
+  max-width: 100vw;
 }
 .column2 {
-  margin-left: 5.5rem;
-    width: 70%;
+  margin-left: 2.2rem;
+    width: 756px;
+    max-width: 100vw;
 }
 .none-button {
   margin-bottom: 0.6rem;

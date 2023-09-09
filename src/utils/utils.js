@@ -99,7 +99,7 @@ const firebaseConfig = {
 
 // 发送 POST 请求到后端接口
         console.log("下一步发送")
-    fetch('http://127.0.0.1:5000/api/auth/callback', {
+    fetch('https://akkca.verseeding.com/api/proxy/api/auth/callback', {
      method: 'POST',
      headers: {
     'Content-Type': 'application/json'
@@ -212,7 +212,7 @@ export function githubLogin() {
             uid: user.uid,
     };
 
-      fetch('http://127.0.0.1:5000/api/auth/callback', {
+      fetch('https://akkca.verseeding.com/api/proxy/api/auth/callback', {
      method: 'POST',
      headers: {
     'Content-Type': 'application/json'

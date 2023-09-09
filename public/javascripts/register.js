@@ -100,7 +100,7 @@
   }
 
       // 向后端发送GET请求
-        fetch(`http://127.0.0.1:5000/check?email=${input.value}&type=${type}`, {
+        fetch(`https://akkca.verseeding.com/api/proxy/check?email=${input.value}&type=${type}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -202,7 +202,7 @@
         input.reportValidity();
         return;
       }
-      fetch('http://127.0.0.1:5000/send_code', {
+      fetch('https://akkca.verseeding.com/api/proxy/send_code', {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',
@@ -332,7 +332,7 @@
       formData.append("code", verificationCode);
       formData.append("temp_id", randomNum);
 
-        fetch("http://127.0.0.1:5000/register_account", {
+        fetch("https://akkca.verseeding.com/api/proxy/register_account", {
         method: "POST",
         body: formData
       })
@@ -361,7 +361,7 @@
       formData.append("code", verificationCode);
       formData.append("temp_id", randomNum);
 
-        fetch("http://127.0.0.1:5000/register_account", {
+        fetch("https://akkca.verseeding.com/api/proxy/register_account", {
         method: "POST",
         body: formData
       })

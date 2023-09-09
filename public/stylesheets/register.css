@@ -37,7 +37,7 @@ border-bottom: 1px solid rgba(102, 102, 102, 0.3);
       border-radius: 10px;
       /*height: 500px;*/
         height: auto;
-      /*grid-template-rows: 1;*/
+      grid-template-rows: 100%;
       grid-template-columns: 50% 50%;
       grid-gap: 0px;
       position: absolute;

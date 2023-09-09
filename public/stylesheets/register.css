@@ -46,7 +46,7 @@ border-bottom: 1px solid rgba(102, 102, 102, 0.3);
     }
     @media (max-width: 768px) {
   .grid-container {
-    grid-template-rows: 100%;
+    grid-template-columns: 100%;
   }
 }
 
@@ -61,7 +61,7 @@ border-bottom: 1px solid rgba(102, 102, 102, 0.3);
       grid-row: 1;
       background-color:white;
       grid-column: 1;
-         max-width: 50vw;
+
                 padding-top: 2rem;
         padding-left: 4.1rem;
         padding-right: 4.1rem;
@@ -74,12 +74,11 @@ border-bottom: 1px solid rgba(102, 102, 102, 0.3);
     .item2 {
         border-radius: 0px 10px 10px 0px;
       grid-row: 1 ;
-         max-width: 50vw;
         padding-top: 2rem;
         padding-left: 2.5rem;
         padding-right: 2.5rem;
 background-color: rgba(245, 245, 245, 0.51);
-
+ max-width: 50vw;
       grid-column: 2;
       display: flex;
       flex-direction: column;

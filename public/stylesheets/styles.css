@@ -750,7 +750,7 @@ html {
  /* 在屏幕宽度小于600px时，将根元素字体大小调整为14px */
 @media screen and (max-width: 780px) {
     .header-phone{
-    margin-right: 1.2rem;
+    margin-right: 0.5rem;
 }
   html {
     font-size: 12px; // 小屏幕设备的最小字体大小为14px

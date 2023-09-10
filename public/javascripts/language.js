@@ -12,7 +12,7 @@ if (userLanguage !== 'zh-CN' && userLanguage !== 'zh-TW' && userLanguage !== 'ja
         console.log("浏览器首选语言：" + userLanguage);
 languageSwitcherHandler(event,userLanguage);
 
-adjustLanguageSwitcher();
+
 
 
       let button = document.getElementById('language-button');
@@ -150,7 +150,7 @@ for (var i = 0; i < styleselectElement.options.length; i++) {
   }
 }
 
-
+adjustLanguageSwitcher();
 
 
 }

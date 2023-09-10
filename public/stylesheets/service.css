@@ -59,6 +59,7 @@ position: absolute;
     flex-direction: row;
     flex-wrap: nowrap;
      justify-content: space-between;
+    align-content: center;
     background:  #ffffff;
     /*background: #f5f5f5;*/
     border-radius: 0.86rem;

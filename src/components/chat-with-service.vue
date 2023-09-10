@@ -2,8 +2,8 @@
 <div id="chat-window" class="chat-window">
         <div class="chat-header" id="chat-header" style="font-size:1rem;">Chat with Vee
 <!--            <i class="fa-solid fa-angles-down"></i> fa-solid fa-angles-up-->
-            <i class="fa-solid fa-angles-down" @click="windowdown" id="fa-angles-down" style="color: #9bb6e4; margin-left: 100%;cursor: pointer;"></i>
-            <i class="fa-solid fa-angles-up" @click="windowup" id="fa-angles-up" style="color: #9bb6e4; margin-left: 100%;display: none;cursor: pointer"></i>
+            <i class="fa-solid fa-angles-down" @click="windowdown" id="fa-angles-down" style="color: #9bb6e4; margin-left: 70%;cursor: pointer;"></i>
+            <i class="fa-solid fa-angles-up" @click="windowup" id="fa-angles-up" style="color: #9bb6e4; margin-left: 70%;display: none;cursor: pointer"></i>
         </div>
 
         <div class="chat-body" id ="chat-body">

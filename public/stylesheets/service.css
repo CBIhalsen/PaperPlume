@@ -51,6 +51,7 @@ position: absolute;
   }
 
 .chat-header {
+     white-space: nowrap;
     transition: height 0.3s;
          box-shadow: 0 0 0.2rem rgba(16, 15, 15, 0.2);
     padding: 10px;

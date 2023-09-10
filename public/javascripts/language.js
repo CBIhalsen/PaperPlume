@@ -110,6 +110,8 @@ decreaseFontSize('writing1', percent);
     console.error('Error:', error);
   });
 
+adjustLanguageSwitcher();
+
     // 获取select元素
 let selectElement = document.getElementById("language-select");
 
@@ -150,8 +152,6 @@ for (var i = 0; i < styleselectElement.options.length; i++) {
   }
 }
 
-adjustLanguageSwitcher();
-
 
 }
 
@@ -190,4 +190,5 @@ function adjustLanguageSwitcher() {
   // switcher.style.position = 'absolute';
   // switcher.style.top = (buttonRect.top + buttonRect.height) + 'px';
   switcher.style.right = (document.documentElement.clientWidth - buttonRect.right) + 'px';
+  console.log(document.documentElement.clientWidth - buttonRect.right);
 }

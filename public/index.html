@@ -211,7 +211,7 @@
     },
     methods: {
       handleClick(fullUrl) {
-    window.open('http://127.0.0.1:5000/download/'+ fullUrl, '_blank');
+    window.open('https://akkca.verseeding.com/api/proxy/download/'+ fullUrl, '_blank');
   },
 
   truncateUrl(fullUrl) {
@@ -247,7 +247,7 @@
                return;
            }
         this.loading = true
-        axios.get('http://45.76.210.12:80/select_informaiton', {
+        axios.get('https://akkca.verseeding.com/api/proxy/select_informaiton', {
           params: {
             page: this.currentPage,
 

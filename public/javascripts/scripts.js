@@ -41,12 +41,19 @@ function isAccessTokenValid() {
             const savedTextareaValue = localStorage.getItem("textareaValue");
              const savedModelValue = localStorage.getItem("modelValue");
             // 发送 POST 请求
-            const formData = new FormData();
-            formData.append("title",title);
-            formData.append("reference", savedTextareaValue);
-            formData.append("language",savedLanguage);
-            formData.append("style",savedWritingStyle);
-            formData.append("model",savedModelValue)
+            // const formData = new FormData();
+            // formData.append("title",title);
+            // formData.append("reference", savedTextareaValue);
+            // formData.append("language",savedLanguage);
+            // formData.append("style",savedWritingStyle);
+            // formData.append("model",savedModelValue)
+            const formData = {
+            title: title,
+            reference: savedTextareaValue,
+            language: savedLanguage,
+            style: savedWritingStyle,
+            model: savedModelValue
+            };
 
             fetch("https://transform.verseeding.com/generate_outline", {
                 method: "POST",

@@ -148,40 +148,80 @@ if (button2.disabled) {
             const savedWritingStyle = localStorage.getItem("writingStyle");
             const savedModelValue = localStorage.getItem("modelValue");
 
-            const formData = new FormData();
-            formData.append("first_reply",textareaField.value);
-            formData.append("title", title);
-             formData.append("language",savedLanguage)
-            formData.append("style",savedWritingStyle)
-            formData.append("model",savedModelValue)
+                        const requestData = {
+                first_reply: textareaField.value,
+                title: title,
+                language: savedLanguage,
+                style: savedWritingStyle,
+                model: savedModelValue
+            };
 
-             const accessToken =  getAccessToken();
+            const accessToken = getAccessToken();
 
-
-            alert("请等候10分钟左右,会自动弹出下载链接");
+            alert("请等候10分钟左右，会自动弹出下载链接");
             fetch("https://transform.verseeding.com/write_docx", {
                 method: "POST",
                 headers: {
-                    'Authorization': `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
                 },
-                body: formData
+                body: JSON.stringify(requestData)
             })
-             .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
-                if (data =='refuse3'){
-                     showContainer(10,'nagw3');
-                     return;
-                } else if(data =='refuse4'){
-                     colorshowContainer(10,'nagw4');
-                      return;
+                if (data.message === 'refuse3') {
+                    showContainer(10, 'nagw3');
+                    return;
+                } else if (data.message === 'refuse4') {
+                    colorshowContainer(10, 'nagw4');
+                    return;
                 }
-                // const content = '<a href="' + data + '" target="_blank">' + data + '</a>';
-                window.open(data, '_blank');
-                alert("Url:",data);
-                localStorage.setItem('previousUrl', data);
-
+                const url = data.url;
+                window.open(url, '_blank');
+                alert("Url: " + url);
+                localStorage.setItem('previousUrl', url);
             })
             .catch(error => console.log(error));
+
+
+
+
+
+            //
+            // const formData = new FormData();
+            // formData.append("first_reply",textareaField.value);
+            // formData.append("title", title);
+            //  formData.append("language",savedLanguage)
+            // formData.append("style",savedWritingStyle)
+            // formData.append("model",savedModelValue)
+            //
+            //  const accessToken =  getAccessToken();
+            //
+            //
+            // alert("请等候10分钟左右,会自动弹出下载链接");
+            // fetch("https://transform.verseeding.com/write_docx", {
+            //     method: "POST",
+            //     headers: {
+            //         'Authorization': `Bearer ${accessToken}`,
+            //     },
+            //     body: formData
+            // })
+            //  .then(response => response.text())
+            // .then(data => {
+            //     if (data =='refuse3'){
+            //          showContainer(10,'nagw3');
+            //          return;
+            //     } else if(data =='refuse4'){
+            //          colorshowContainer(10,'nagw4');
+            //           return;
+            //     }
+            //     // const content = '<a href="' + data + '" target="_blank">' + data + '</a>';
+            //     window.open(data, '_blank');
+            //     alert("Url:",data);
+            //     localStorage.setItem('previousUrl', data);
+            //
+            // })
+            // .catch(error => console.log(error));
 
 }
 

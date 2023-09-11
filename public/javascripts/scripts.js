@@ -51,6 +51,7 @@ function isAccessTokenValid() {
             fetch("https://transform.verseeding.com/generate_outline", {
                 method: "POST",
                 headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${accessToken}`,
                 },
                     body: formData

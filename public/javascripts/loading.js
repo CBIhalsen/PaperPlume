@@ -18,7 +18,7 @@ function Tologin() {
 
 
 
-    fetch('https://akkca.verseeding.com/api/proxy/login', {
+    fetch('https://transform.verseeding.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

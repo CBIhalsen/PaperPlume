@@ -100,7 +100,7 @@
   }
 
       // 向后端发送GET请求
-        fetch(`https://akkca.verseeding.com/api/proxy/check?email=${input.value}&type=${type}`, {
+        fetch(`https://transform.verseeding.com/check?email=${input.value}&type=${type}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -202,7 +202,7 @@
         input.reportValidity();
         return;
       }
-      fetch('https://akkca.verseeding.com/api/proxy/send_code', {
+      fetch('https://transform.verseeding.com/send_code', {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',
@@ -332,7 +332,7 @@
       formData.append("code", verificationCode);
       formData.append("temp_id", randomNum);
 
-        fetch("https://akkca.verseeding.com/api/proxy/register_account", {
+        fetch("https://transform.verseeding.com/register_account", {
         method: "POST",
         body: formData
       })
@@ -361,7 +361,7 @@
       formData.append("code", verificationCode);
       formData.append("temp_id", randomNum);
 
-        fetch("https://akkca.verseeding.com/api/proxy/register_account", {
+        fetch("https://transform.verseeding.com/register_account", {
         method: "POST",
         body: formData
       })

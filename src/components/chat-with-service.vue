@@ -128,7 +128,7 @@ if (chatInput.value.length == 0) {
    const chatservice = document.getElementById("chat-body");
 
   // 向后端发送消息
-  fetch("https://akkca.verseeding.com/api/proxy/send-message", {
+  fetch("https://transform.verseeding.com/send-message", {
     method: "POST",
      body: JSON.stringify({
     chatMessages: chatMessages,

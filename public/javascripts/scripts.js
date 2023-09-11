@@ -48,7 +48,7 @@ function isAccessTokenValid() {
             formData.append("style",savedWritingStyle);
             formData.append("model",savedModelValue)
 
-            fetch("https://akkca.verseeding.com/api/proxy/generate_outline", {
+            fetch("https://transform.verseeding.com/generate_outline", {
                 method: "POST",
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
@@ -152,7 +152,7 @@ if (button2.disabled) {
 
 
             alert("请等候10分钟左右,会自动弹出下载链接");
-            fetch("https://akkca.verseeding.com/api/proxy/write_docx", {
+            fetch("https://transform.verseeding.com/write_docx", {
                 method: "POST",
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
@@ -255,7 +255,7 @@ if (button2.disabled) {
                    const accessToken = getAccessToken();
             if (accessToken && isAccessTokenValid() ) {
 
-            fetch("https://akkca.verseeding.com/api/proxy/user_information", {
+            fetch("https://transform.verseeding.com/user_information", {
                 method: "POST",
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,

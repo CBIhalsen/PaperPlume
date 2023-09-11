@@ -76,7 +76,7 @@ export default {
 }
 
 
-        fetch("https://akkca.verseeding.com/api/proxy/create_payment", {
+        fetch("https://transform.verseeding.com/create_payment", {
     method: "POST",
      body: JSON.stringify({
 
@@ -117,7 +117,7 @@ export default {
 }
 
 
-        fetch("https://akkca.verseeding.com/api/proxy/create_payment", {
+        fetch("https://transform.verseeding.com/create_payment", {
     method: "POST",
      body: JSON.stringify({
 

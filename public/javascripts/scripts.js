@@ -54,11 +54,11 @@ function isAccessTokenValid() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${accessToken}`,
                 },
-                    body: formData
+               body: JSON.stringify(formData)
             })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
-                if (data=='refuse'){
+                if (data.type=='refuse'){
                    showContainer(10,'nagw');
                    data='Your balance is negative. Please recharge to use the features.';
 

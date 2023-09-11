@@ -67,12 +67,11 @@ function isAccessTokenValid() {
             .then(data => {
                 if (data.type=='refuse'){
                    showContainer(10,'nagw');
-                   data='Your balance is negative. Please recharge to use the features.';
-
+                   data.message='Your balance is negative. Please recharge to use the features.';
 
                 }
                 // 将返回的 First_reply 设置为文本框的内容
-                firstReplyTextBox.value = data;
+                firstReplyTextBox.value = data.message;
                 button.disabled = false; // 启用按钮点击
                 button2.disabled = false;
                 buttonText.style.display = 'inline'; // 恢复按钮文字
@@ -148,6 +147,7 @@ if (button2.disabled) {
             const savedLanguage = localStorage.getItem("language");
             const savedWritingStyle = localStorage.getItem("writingStyle");
             const savedModelValue = localStorage.getItem("modelValue");
+
             const formData = new FormData();
             formData.append("first_reply",textareaField.value);
             formData.append("title", title);
@@ -156,7 +156,6 @@ if (button2.disabled) {
             formData.append("model",savedModelValue)
 
              const accessToken =  getAccessToken();
-
 
 
             alert("请等候10分钟左右,会自动弹出下载链接");
@@ -181,13 +180,6 @@ if (button2.disabled) {
                 alert("Url:",data);
                 localStorage.setItem('previousUrl', data);
 
-                // 显示带有超链接的弹窗
-                // alert(content);
-                // 将返回的 First_reply 设置为文本框的内容
-                // firstReplyTextBox.value = data;
-                // button.disabled = false; // 启用按钮点击
-                // buttonText.style.display = 'inline'; // 恢复按钮文字
-                // loader.style.display = 'none'; // 隐藏加载圈
             })
             .catch(error => console.log(error));
 

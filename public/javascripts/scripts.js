@@ -157,7 +157,7 @@ if (button2.disabled) {
 
 
             alert("请等候10分钟左右,会自动弹出下载链接");
-            fetch("http://127.0.0.1:5000/write_docx", {
+            fetch("https://transform.verseeding.com/write_docx", {
                 method: "POST",
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,

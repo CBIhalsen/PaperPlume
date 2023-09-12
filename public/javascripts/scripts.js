@@ -62,24 +62,6 @@ function isAccessTokenValid() {
             };
 
 
-            // const savedLanguage = localStorage.getItem("language");
-            // const savedWritingStyle = localStorage.getItem("writingStyle");
-            // const savedTextareaValue = localStorage.getItem("textareaValue");
-            //  const savedModelValue = localStorage.getItem("modelValue");
-            // 发送 POST 请求
-            // const formData = new FormData();
-            // formData.append("title",title);
-            // formData.append("reference", savedTextareaValue);
-            // formData.append("language",savedLanguage);
-            // formData.append("style",savedWritingStyle);
-            // formData.append("model",savedModelValue)
-            // const formData = {
-            // title: title,
-            // reference: savedTextareaValue,
-            // language: savedLanguage,
-            // style: savedWritingStyle,
-            // model: savedModelValue
-            // };
 
             fetch("https://transform.verseeding.com/generate_outline", {
                 method: "POST",
@@ -167,9 +149,7 @@ if (button2.disabled) {
             titleField.type = "text";
             titleField.name = "title";
             titleField.value = title;
-            // const savedLanguage = localStorage.getItem("language");
-            // const savedWritingStyle = localStorage.getItem("writingStyle");
-            // const savedModelValue = localStorage.getItem("modelValue");
+
 
                     const languageSelect = document.getElementById("language-select");
          const writingStyleSelect = document.getElementById("writing-style-select");

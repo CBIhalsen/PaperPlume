@@ -188,17 +188,17 @@ if (button2.disabled) {
             })
             .then(response => response.json())
             .then(data => {
-                if (data =='refuse3'){
+                if (data.message =='refuse3'){
                      showContainer(10,'nagw3');
                      return;
-                } else if(data =='refuse4'){
+                } else if(data.message =='refuse4'){
                      colorshowContainer(10,'nagw4');
                       return;
                 }
                 // const content = '<a href="' + data + '" target="_blank">' + data + '</a>';
-                window.open(data, '_blank');
-                alert("Url:",data);
-                localStorage.setItem('previousUrl', data);
+                window.open(data.url, '_blank');
+                alert("Url:",data.url);
+                // localStorage.setItem('previousUrl', data);
 
                 // 显示带有超链接的弹窗
                 // alert(content);

@@ -26,6 +26,8 @@ function isAccessTokenValid() {
             var title = titleInput.value;
             const accessToken =  getAccessToken();
 
+            titleInput.reportValidity();
+
             if (!accessToken || accessToken == undefined || accessToken == null || !isAccessTokenValid() ) {
              // 如果access_token不存在，则设置其值为Null
                 // 使用示例
@@ -34,6 +36,10 @@ function isAccessTokenValid() {
 
                 return;
             }
+                               if (!titleInput.checkValidity()) {
+           return;
+
+  }
 
 
             const savedLanguage = localStorage.getItem("language");

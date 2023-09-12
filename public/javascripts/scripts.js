@@ -41,11 +41,31 @@ function isAccessTokenValid() {
 
   }
 
+                    const languageSelect = document.getElementById("language-select");
+         const writingStyleSelect = document.getElementById("writing-style-select");
+         const textarea = document.getElementById("textarea");
+        const model = document.getElementById("model-select");
 
-            const savedLanguage = localStorage.getItem("language");
-            const savedWritingStyle = localStorage.getItem("writingStyle");
-            const savedTextareaValue = localStorage.getItem("textareaValue");
-             const savedModelValue = localStorage.getItem("modelValue");
+            // const savedLanguage = localStorage.getItem("language");
+            // const savedWritingStyle = localStorage.getItem("writingStyle");
+            // const savedTextareaValue = localStorage.getItem("textareaValue");
+            //  const savedModelValue = localStorage.getItem("modelValue");
+            // 发送 POST 请求
+            //  console.log(savedWritingStyle)
+
+            const formData = {
+            title: title,
+            reference: textarea.value,
+            language: languageSelect.value,
+            style: writingStyleSelect.value,
+            model: model.value
+            };
+
+
+            // const savedLanguage = localStorage.getItem("language");
+            // const savedWritingStyle = localStorage.getItem("writingStyle");
+            // const savedTextareaValue = localStorage.getItem("textareaValue");
+            //  const savedModelValue = localStorage.getItem("modelValue");
             // 发送 POST 请求
             // const formData = new FormData();
             // formData.append("title",title);
@@ -53,13 +73,13 @@ function isAccessTokenValid() {
             // formData.append("language",savedLanguage);
             // formData.append("style",savedWritingStyle);
             // formData.append("model",savedModelValue)
-            const formData = {
-            title: title,
-            reference: savedTextareaValue,
-            language: savedLanguage,
-            style: savedWritingStyle,
-            model: savedModelValue
-            };
+            // const formData = {
+            // title: title,
+            // reference: savedTextareaValue,
+            // language: savedLanguage,
+            // style: savedWritingStyle,
+            // model: savedModelValue
+            // };
 
             fetch("https://transform.verseeding.com/generate_outline", {
                 method: "POST",
@@ -147,16 +167,23 @@ if (button2.disabled) {
             titleField.type = "text";
             titleField.name = "title";
             titleField.value = title;
-            const savedLanguage = localStorage.getItem("language");
-            const savedWritingStyle = localStorage.getItem("writingStyle");
-            const savedModelValue = localStorage.getItem("modelValue");
+            // const savedLanguage = localStorage.getItem("language");
+            // const savedWritingStyle = localStorage.getItem("writingStyle");
+            // const savedModelValue = localStorage.getItem("modelValue");
+
+                    const languageSelect = document.getElementById("language-select");
+         const writingStyleSelect = document.getElementById("writing-style-select");
+
+        const model = document.getElementById("model-select");
+
+
 
             const formData = new FormData();
             formData.append("first_reply",textareaField.value);
             formData.append("title", title);
-             formData.append("language",savedLanguage)
-            formData.append("style",savedWritingStyle)
-            formData.append("model",savedModelValue)
+           formData.append("language",languageSelect.value)
+            formData.append("style",writingStyleSelect.value)
+            formData.append("model",model.value)
 
              const accessToken =  getAccessToken();
 

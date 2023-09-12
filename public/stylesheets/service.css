@@ -110,7 +110,7 @@ position: absolute;
     flex-grow: 1;
     border: none !important;
     border-radius: 0.86rem;
-    width: auto;
+    width: 78%;
     height: 80%;
     display: block;
     padding-right: 8px!important;
@@ -136,7 +136,7 @@ position: absolute;
     padding: 0.35rem;
     top: 0.35rem;
     height: 0.86rem;
-        right: 0.35rem !important;
+        /*right: 0.35rem !important;*/
         background-color: transparent !important;
         border: none !important;   // 去掉边框
         outline: none !important;  // 去掉点击按钮后的边框

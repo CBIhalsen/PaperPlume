@@ -116,8 +116,8 @@
             // alert("true")
         // 后端返回的是 True
         // 执行相应的操作
-
-        input.setCustomValidity('');
+        //
+        // input.setCustomValidity('');
         sendVerificationCode(type);
 
     } else if (data == "False") {

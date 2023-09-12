@@ -99,7 +99,7 @@ const firebaseConfig = {
 
 // 发送 POST 请求到后端接口
         console.log("下一步发送")
-    fetch('https://paperplume.verseeding.com/api/auth/callback', {
+    fetch('https://paperplume.verseeding.com/auth/callback', {
      method: 'POST',
      headers: {
     'Content-Type': 'application/json'
@@ -212,7 +212,7 @@ export function githubLogin() {
             uid: user.uid,
     };
 
-      fetch('https://akkca.verseeding.com/api/proxy/api/auth/callback', {
+      fetch('https://paperplume.verseeding.com/auth/callback', {
      method: 'POST',
      headers: {
     'Content-Type': 'application/json'

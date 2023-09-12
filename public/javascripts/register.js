@@ -110,6 +110,7 @@
         })
         .then(response => response.text())
         .then(data => {
+            console.log(data)
           // alert(data.message)
      if (data == "True") {
             // alert("true")

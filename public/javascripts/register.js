@@ -122,6 +122,7 @@
         // 执行相应的操作
         // alert("false")
         input.setCustomValidity('Email account already exists');
+         input.reportValidity();
         // input.reportValidity();
     } else if(data == "none"){
          input.setCustomValidity('Email account does not exist.');

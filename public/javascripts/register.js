@@ -128,6 +128,7 @@
         // input.reportValidity();
     } else if(data == "none"){
          input.setCustomValidity('Email account does not exist.');
+           input.reportValidity();
         // input.reportValidity();
 
           }

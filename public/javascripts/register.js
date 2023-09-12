@@ -27,6 +27,8 @@
          document.getElementById('allogin').style.display='block';
          document.getElementById('fp').style.display='none';
          document.getElementById('nosignup').style.display='none';
+                           document.getElementById('sendCodeBtn').style.display='block';
+         document.getElementById('fsendCodeBtn').style.display='none';
 
 
          }

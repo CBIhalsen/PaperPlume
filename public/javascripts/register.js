@@ -95,10 +95,10 @@
           const input = document.getElementById('emailInput');
           input.reportValidity();
           console.log(type)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 正则表达式用于验证邮箱格式
 
-       if (!input.checkValidity()) {
-           return;
-
+  if (!emailRegex.test(input.value)) {
+    return; // 如果输入值不是有效的邮箱格式，直接返回
   }
 
       // 向后端发送GET请求

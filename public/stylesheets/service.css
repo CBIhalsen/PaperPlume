@@ -110,7 +110,7 @@ position: absolute;
     flex-grow: 1;
     border: none !important;
     border-radius: 0.86rem;
-    width: 78%;
+    width: auto;
     height: 80%;
     display: block;
     padding-right: 8px!important;

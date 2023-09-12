@@ -156,14 +156,20 @@ if (button2.disabled) {
 
         const model = document.getElementById("model-select");
 
+                    const formData = {
+           first_reply: textareaField.value,
+            title: title,
+            language: languageSelect.value,
+            style: writingStyleSelect.value,
+            model: model.value
+            };
 
-
-            const formData = new FormData();
-            formData.append("first_reply",textareaField.value);
-            formData.append("title", title);
-           formData.append("language",languageSelect.value)
-            formData.append("style",writingStyleSelect.value)
-            formData.append("model",model.value)
+           //  const formData = new FormData();
+           //  formData.append("first_reply",textareaField.value);
+           //  formData.append("title", title);
+           // formData.append("language",languageSelect.value)
+           //  formData.append("style",writingStyleSelect.value)
+           //  formData.append("model",model.value)
 
              const accessToken =  getAccessToken();
 
@@ -174,12 +180,13 @@ if (button2.disabled) {
                 method: "POST",
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
-                     'Content-Type': 'multipart/form-data' 
+                     'Content-Type': 'application/json',
+
 
                 },
-                body: formData
+                      body: JSON.stringify(formData)
             })
-             .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
                 if (data =='refuse3'){
                      showContainer(10,'nagw3');

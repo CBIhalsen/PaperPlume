@@ -67,7 +67,7 @@ function isAccessTokenValid() {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`,
+                    'Authorization': `Bearer ${accessToken}`
                 },
                body: JSON.stringify(formData)
             })
@@ -78,6 +78,7 @@ function isAccessTokenValid() {
                    data.message='Your balance is negative. Please recharge to use the features.';
 
                 }
+
                 // 将返回的 First_reply 设置为文本框的内容
                 firstReplyTextBox.value = data.message;
                 button.disabled = false; // 启用按钮点击

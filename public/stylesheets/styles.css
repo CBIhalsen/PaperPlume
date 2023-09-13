@@ -139,12 +139,16 @@ button:hover {
 }
 /*background-color:#FDC500;*/
 .f1background {
+    margin-top: 5px;
     display: flex;
-    padding: 40px 10px;
+    padding: 40px 0px;
      flex-wrap: wrap;
     justify-content: space-evenly; /* 将子元素均匀分布 */
     align-items: center; /* 垂直居中对齐子元素 */
     width: 100%;
+    border-radius: 1rem;
+    outline: rgba(16, 15, 15, 0.1);
+    box-shadow: 0 0 0.2rem rgba(16, 15, 15, 0.1);
     height: 100%;
  /* 设置包含块的高度 */
   background-image: url('https://i.postimg.cc/ZKxXssW-r/backgroundul.png');
@@ -743,26 +747,13 @@ html {
 
 /* 在屏幕宽度小于600px时，将根元素字体大小调整为14px */
 @media screen and (max-width: 600px) {
-        .header-phone{
-    margin-right: 0.5rem!important;
-}
   html {
     font-size: 14px; // 小屏幕设备的最小字体大小为14px
   }
 }
- /* 在屏幕宽度小于600px时，将根元素字体大小调整为14px */
-@media screen and (max-width: 780px) {
-    .header-phone{
-    margin-right: 0.5rem!important;
-}
-  html {
-    font-size: 12px; // 小屏幕设备的最小字体大小为14px
-  }
-}
-
 
 /* 在屏幕宽度在600px到2000px之间时，字体大小动态调整 */
-@media screen and (min-width: 780px) and (max-width: 2000px) {
+@media screen and (min-width: 600px) and (max-width: 2000px) {
   html {
     font-size: calc(14px + (18 - 14) * ((100vw - 600px) / (2000 - 600))); // 当视口宽度在600px到2000px之间时，字体大小根据视口宽度从14px逐渐增加到18px
   }

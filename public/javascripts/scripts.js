@@ -46,12 +46,6 @@ function isAccessTokenValid() {
          const textarea = document.getElementById("textarea");
         const model = document.getElementById("model-select");
 
-            // const savedLanguage = localStorage.getItem("language");
-            // const savedWritingStyle = localStorage.getItem("writingStyle");
-            // const savedTextareaValue = localStorage.getItem("textareaValue");
-            //  const savedModelValue = localStorage.getItem("modelValue");
-            // 发送 POST 请求
-            //  console.log(savedWritingStyle)
 
             const formData = {
             title: title,
@@ -73,14 +67,17 @@ function isAccessTokenValid() {
             })
             .then(response => response.json())
             .then(data => {
-                if (data.type=='refuse'){
+                if (data.type ==='refuse'){
                    showContainer(10,'nagw');
-                   data.message='Your balance is negative. Please recharge to use the features.';
+                   var cmessage ='Your balance is negative. Please recharge to use the features.';
 
+
+                }else{
+                    cmessage = data.message;
                 }
 
                 // 将返回的 First_reply 设置为文本框的内容
-                firstReplyTextBox.value = data.message;
+                firstReplyTextBox.value = cmessage;
                 button.disabled = false; // 启用按钮点击
                 button2.disabled = false;
                 buttonText.style.display = 'inline'; // 恢复按钮文字

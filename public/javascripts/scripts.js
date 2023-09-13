@@ -1,4 +1,4 @@
-
+ var firstReplyTextBox = document.getElementById("first-reply");
 function isAccessTokenValid() {
   const tokenString = localStorage.getItem('access_token');
   if (!tokenString) {
@@ -104,7 +104,7 @@ if (button2.disabled) {
 
 
 // 获取元素的引用
-        const firstReplyTextBox = document.getElementById("first-reply");
+
         const reloadButton = document.getElementById("reload-button");
         const submitButton = document.getElementById("submit-button");
 

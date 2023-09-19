@@ -134,7 +134,8 @@ if (button2.disabled) {
   const tokenObject = JSON.parse(tokenString);
   return tokenObject.token;
 }
-     function handleSubmitButtonClick() {
+
+        function handleSubmitButtonClick() {
             var firstReply = firstReplyTextBox.value;
              var textareaField = document.createElement("textarea");
             // textareaField.name = "first_reply";
@@ -148,26 +149,31 @@ if (button2.disabled) {
             titleField.name = "title";
             titleField.value = title;
 
-
-                    const languageSelect = document.getElementById("language-select");
+                        // const settingsPopup = document.getElementById("settings-popup");
+        const languageSelect = document.getElementById("language-select");
          const writingStyleSelect = document.getElementById("writing-style-select");
 
         const model = document.getElementById("model-select");
+              const date = new Date();
+      const year = date.getFullYear();
+      const month = ("0" + (date.getMonth() + 1)).slice(-2);
+      const day = ("0" + date.getDate()).slice(-2);
+      const hours = ("0" + date.getHours()).slice(-2);
+      const minutes = ("0" + date.getMinutes()).slice(-2);
+      const seconds = ("0" + date.getSeconds()).slice(-2);
 
-                    const formData = {
-           first_reply: textareaField.value,
-            title: title,
-            language: languageSelect.value,
-            style: writingStyleSelect.value,
-            model: model.value
-            };
+      const timestampMySQL = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-           //  const formData = new FormData();
-           //  formData.append("first_reply",textareaField.value);
-           //  formData.append("title", title);
-           // formData.append("language",languageSelect.value)
-           //  formData.append("style",writingStyleSelect.value)
-           //  formData.append("model",model.value)
+
+
+
+            const formData = new FormData();
+             formData.append("timestamp",timestampMySQL);
+            formData.append("first_reply",textareaField.value);
+            formData.append("title", title);
+             formData.append("language",languageSelect.value)
+            formData.append("style",writingStyleSelect.value)
+            formData.append("model",model.value)
 
              const accessToken =  getAccessToken();
 
@@ -178,25 +184,22 @@ if (button2.disabled) {
                 method: "POST",
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
-                     'Content-Type': 'application/json',
-
-
                 },
-                      body: JSON.stringify(formData)
+                body: formData
             })
-            .then(response => response.json())
+             .then(response => response.text())
             .then(data => {
-                if (data.message =='refuse3'){
+                if (data =='refuse3'){
                      showContainer(10,'nagw3');
                      return;
-                } else if(data.message =='refuse4'){
+                } else if(data =='refuse4'){
                      colorshowContainer(10,'nagw4');
                       return;
                 }
                 // const content = '<a href="' + data + '" target="_blank">' + data + '</a>';
-                window.open(data.url, '_blank');
-                alert("Url:",data.url);
-                // localStorage.setItem('previousUrl', data);
+                window.open(data, '_blank');
+                alert("Url:",data);
+                localStorage.setItem('previousUrl', data);
 
                 // 显示带有超链接的弹窗
                 // alert(content);
@@ -209,6 +212,85 @@ if (button2.disabled) {
             .catch(error => console.log(error));
 
 }
+
+
+
+
+//      function handleSubmitButtonClick() {
+//             var firstReply = firstReplyTextBox.value;
+//              var textareaField = document.createElement("textarea");
+//             // textareaField.name = "first_reply";
+//             textareaField.value = firstReply; // 设置为HTML内容
+//
+//
+//             var titleInput = document.getElementById("title");
+//             var title = titleInput.value;
+//             var titleField = document.createElement("input");
+//             titleField.type = "text";
+//             titleField.name = "title";
+//             titleField.value = title;
+//
+//
+//                     const languageSelect = document.getElementById("language-select");
+//          const writingStyleSelect = document.getElementById("writing-style-select");
+//
+//         const model = document.getElementById("model-select");
+//
+//                     const formData = {
+//            first_reply: textareaField.value,
+//             title: title,
+//             language: languageSelect.value,
+//             style: writingStyleSelect.value,
+//             model: model.value
+//             };
+//
+//            //  const formData = new FormData();
+//            //  formData.append("first_reply",textareaField.value);
+//            //  formData.append("title", title);
+//            // formData.append("language",languageSelect.value)
+//            //  formData.append("style",writingStyleSelect.value)
+//            //  formData.append("model",model.value)
+//
+//              const accessToken =  getAccessToken();
+//
+//
+//
+//             alert("请等候10分钟左右,会自动弹出下载链接");
+//             fetch("https://transform.verseeding.com/write_docx", {
+//                 method: "POST",
+//                 headers: {
+//                     'Authorization': `Bearer ${accessToken}`,
+//                      'Content-Type': 'application/json',
+//
+//
+//                 },
+//                       body: JSON.stringify(formData)
+//             })
+//             .then(response => response.json())
+//             .then(data => {
+//                 if (data.message =='refuse3'){
+//                      showContainer(10,'nagw3');
+//                      return;
+//                 } else if(data.message =='refuse4'){
+//                      colorshowContainer(10,'nagw4');
+//                       return;
+//                 }
+//                 // const content = '<a href="' + data + '" target="_blank">' + data + '</a>';
+//                 window.open(data.url, '_blank');
+//                 alert("Url:",data.url);
+//                 // localStorage.setItem('previousUrl', data);
+//
+//                 // 显示带有超链接的弹窗
+//                 // alert(content);
+//                 // 将返回的 First_reply 设置为文本框的内容
+//                 // firstReplyTextBox.value = data;
+//                 // button.disabled = false; // 启用按钮点击
+//                 // buttonText.style.display = 'inline'; // 恢复按钮文字
+//                 // loader.style.display = 'none'; // 隐藏加载圈
+//             })
+//             .catch(error => console.log(error));
+//
+// }
 
         // 处理 submit 按钮的点击事件
 //         function handleSubmitButtonClick() {

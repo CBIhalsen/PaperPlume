@@ -345,7 +345,7 @@
       .then(data => {
         // alert(data.message);
 
-        if (data.message === 'success') {
+        if (data.status === 'success') {
           // alert('注册成功');
             closeLoginPopup();
              showContainer(4,'showalertrs');

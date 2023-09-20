@@ -55,71 +55,40 @@ function isAccessTokenValid() {
             model: model.value
             };
 
-axios.post("https://transform.verseeding.com/generate_outline", formData, {
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${accessToken}`
-  }
-})
-  .then(response => {
-    var data = response.data;
-    if (data.type === 'refuse') {
-      showContainer(10, 'nagw');
-      var cmessage = 'Your balance is negative. Please recharge to use the features.';
-      console.log(cmessage);
-    } else {
-      var cmessage = data.message;
-      console.log(cmessage);
-    }
-    // 将返回的 First_reply 设置为文本框的内容
-    firstReplyTextBox.value = cmessage;
-    button.disabled = false; // 启用按钮点击
-    button2.disabled = false;
-    buttonText.style.display = 'inline'; // 恢复按钮文字
-    loader.style.display = 'none'; // 隐藏加载圈
-  })
-  .catch(error => {
-    console.log(error);
-    // 处理错误情况
-  });
 
-button.disabled = true; // 禁用按钮点击
-console.log("按钮1禁用");
+
+            fetch("https://transform.verseeding.com/generate_outline", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                },
+               body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.type ==='refuse'){
+                   showContainer(10,'nagw');
+                   var cmessage ='Your balance is negative. Please recharge to use the features.';
+
+
+                }else{
+                    cmessage = data.message;
+                }
+
+                // 将返回的 First_reply 设置为文本框的内容
+                firstReplyTextBox.value = cmessage;
+                button.disabled = false; // 启用按钮点击
+                button2.disabled = false;
+                buttonText.style.display = 'inline'; // 恢复按钮文字
+                loader.style.display = 'none'; // 隐藏加载圈
+            })
+            .catch(error => console.log(error));
+
+
+     button.disabled = true; // 禁用按钮点击
+        console.log("按钮1禁用");
 button2.disabled = true;
-
-
-//             fetch("https://transform.verseeding.com/generate_outline", {
-//                 method: "POST",
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                     'Authorization': `Bearer ${accessToken}`
-//                 },
-//                body: JSON.stringify(formData)
-//             })
-//             .then(response => response.json())
-//             .then(data => {
-//                 if (data.type ==='refuse'){
-//                    showContainer(10,'nagw');
-//                    var cmessage ='Your balance is negative. Please recharge to use the features.';
-//
-//
-//                 }else{
-//                     cmessage = data.message;
-//                 }
-//
-//                 // 将返回的 First_reply 设置为文本框的内容
-//                 firstReplyTextBox.value = cmessage;
-//                 button.disabled = false; // 启用按钮点击
-//                 button2.disabled = false;
-//                 buttonText.style.display = 'inline'; // 恢复按钮文字
-//                 loader.style.display = 'none'; // 隐藏加载圈
-//             })
-//             .catch(error => console.log(error));
-//
-//
-//      button.disabled = true; // 禁用按钮点击
-//         console.log("按钮1禁用");
-// button2.disabled = true;
 if (button2.disabled) {
   console.log("按钮二禁用");
 }

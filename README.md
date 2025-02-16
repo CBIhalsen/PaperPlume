@@ -13,7 +13,7 @@
 
 PaperPlume is an open-source AI-powered academic paper generator that helps researchers, students, and academics create high-quality papers efficiently. Built with transparency and accessibility in mind, we're making advanced AI writing technology available to everyone.
 
-Note: This project was completed two years ago when openai just launched gpt 4.0 api access, the project front-end vue+ back-end flask implementation, complete sales and payment system, registration access to firebase to achieve Google, github, twitter and other support for email registration, payment is supported by stripe. Original features of the project: For the ai writing paper, complete the docx document according to the framework prompt words, and realize the water million word paper. In view of the need to modify the specific methods of the current llms reasoning ability, this project is available for anyone to learn and use, including the graduation thesis.
+Note: This project was completed two years ago when openai just launched gpt 4.0 api access, the project front-end vue+ back-end flask implementation, complete sales and payment system, registration access to firebase to achieve Google, github, twitter and other support for email registration, payment is supported by stripe. Original features of the project: For the ai writing paper, complete the docx document according to the framework prompt words, and realize the water million word paper. In view of the need to modify the specific methods of the current llms reasoning ability, this project is available for anyone to learn and use, including the graduation thesis. You can discover the early implementation ideas of the agent from the project.
 
 ## ✨ Key Features
 
